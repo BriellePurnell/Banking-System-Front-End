@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Deposit</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!--Navigation Bar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Online Banking</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="accounts.html">Accounts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="transfers.html">Transfers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="bill-pay.html">Bill Pay</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="deposit.html">Deposit<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="atm-locator.html">ATM Locator</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="margin-left: 4rem; margin-top: 2rem">
+        <h2 class="font-weight-bold" style="display: inline-block">Deposit</h2>
+        <p class="lead"> Use your mobile device to deposit your checks safely and securely!</p>
+        <ol>
+            <li>Properly endorse your check by writing on the back "For MobileDeposit only at Online Banking" and then sign your name.</li>
+            <li>Enter your deposit information.</li>
+            <li>Take a picture of your check, front and back, and upload it.</li>
+            <li>Review your information and submit.</li>
+        </ol>
+
+        
+    </div>
+    <div class="input-group" style="margin-left:4rem; width: 550px;">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Choose which account you would like to deposit to.</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Checking - 6789</option>
+                <option>Savings - 3344</option>
+            </select>
+        </div>
+        <p> After taking a picture of your check, front and back, upload it.</p>
+    </div>
+    
+
+    <div class="custom-file" style="margin-left: 4rem; width: 550px;">
+        <input type="file" class="custom-file-input" id="inputGroupFile04">
+        <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+    </div>
+    <a class="btn btn-primary" href="#" role="button">Submit</a>
+
