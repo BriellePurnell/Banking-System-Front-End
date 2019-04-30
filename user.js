@@ -1,5 +1,10 @@
-var submit = document.getElementById("userID")
-document.getElementById('userInfo').addEventListener('submit', performPostRequest);
+
+// var submit = document.getElementById('userID')
+// var userInfo = document.getElementById('userInfo')
+// console.log('Value of submit: ' + submit)
+// console.log('Value of userInfo: ' + userInfo)
+
+// addEventListener('submit', performPostRequest);
 function performPostRequest() {
     var resultElement = document.getElementById('userInfo');
     var userName = document.getElementById('userID').value;
