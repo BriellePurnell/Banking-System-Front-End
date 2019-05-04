@@ -19,7 +19,23 @@ function getAccounts() {
 function generateSuccessHTMLOutput(response){
     response = Object.assign({}, response.data)
     console.log(response)
-    return JSON.stringify(response.message)
+    var account_type = ''
+
+    if(response.message[0].account_type === 'c'){
+        account_type = 'Checking'
+    } else {
+        account_type = 'Savings'
+    }
+
+    for(i=0; i<response.message.length; i++)
+    return `<div class="card" style="width: 18rem; margin-left:4rem; margin-top: 2rem">
+        <div class="card-body">
+            <h5 class="card-title">Checking <span style="float: right">$${response.message[0].balance}</span></h5>
+            <p class="card-text">Account number ${response.message[0].account_number}</p>
+            <a href="checking.html" class="btn btn-primary">Go to ${account_type} Account</a>
+        </div>
+    </div>`
+    // return JSON.stringify(response.message)
 }
 
 function generateErrorHTMLOutput(error) {
