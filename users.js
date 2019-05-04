@@ -40,7 +40,7 @@ function loginSuccessful(response){
     var token = getToken(document.cookie)
     alert('You are logged in')
     console.log(response)
-    window.location.replace("home.html");
+    window.location.replace("accounts.html");
 }
 
 function loginUnsuccessful(error) {
