@@ -4,25 +4,25 @@ var userInfo = document.getElementById('userInfo')
 console.log(submit)
 console.log(userInfo)
 
-function performPostRequest() {
+function loginUser() {
     var resultElement = document.getElementById('userInfo');
     var username = document.getElementById('userID').value;
     var password = document.getElementById('psw').value;
     resultElement.innerHTML = '';
 
     axios.post('http://localhost:3000/users/login', {
-    username: username,
+        username: username,
         password: password
     })
     .then(response => {
-    resultElement.innerHTML = generateSuccessHTMLOutput(response);
+        resultElement.innerHTML = loginSuccessful(response);
     })
     .catch(error => {
-    resultElement.innerHTML = generateErrorHTMLOutput(error);
+        resultElement.innerHTML = loginUnsuccessful(error);
     });
 }
 
-function performGetRequest() {
+function getMeTestingEndpoint() {
     axios.get('http://localhost:3000/users/me', {})
     .then(response => {
         console.log(response)
@@ -32,17 +32,18 @@ function performGetRequest() {
     })
 }
 
-function generateSuccessHTMLOutput(response){
+function loginSuccessful(response){
     response = Object.assign({}, response.data)
     console.log(response)
     document.cookie = "token=" + response.token
     document.cookie = "expiresIn=" + response.expiresIn
     var token = getToken(document.cookie)
-    alert('You are logged in!\n' + token)
-    return JSON.stringify(response)
+    alert('You are logged in')
+    console.log(response)
+    window.location.replace("home.html");
 }
 
-function generateErrorHTMLOutput(error) {
+function loginUnsuccessful(error) {
     return JSON.stringify(error.data)
 }
 
