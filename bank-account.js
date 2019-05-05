@@ -2,6 +2,21 @@ const config = {
     headers: { 'x-access-token' : getToken() }       
 }
 
+function getToken()
+{
+    let s = ''
+    var list = document.cookie.split(';')
+
+    for (var i=0; i<list.length; i++)
+    {
+        s = list[i]
+        if (s.includes('token=')) {
+            var index = s.search('token=') + 6
+            return s.substring(index)
+        }
+    }
+}
+
 function getAccountOptions() {
     var resultElement = document.getElementById('depositOptions')
     resultElement.innerHTML = ''
@@ -46,7 +61,7 @@ function generateAccountList(response) {
         return result
     } else {
         alert('Error: ' + res.message)
-        window.location.replace('accounts.html')
+        window.location.replace('home.html')
     }
 }
 
@@ -55,17 +70,27 @@ function generateErrorHTMLOutput(error) {
     // window.location.replace('index.html')
 }
 
-function getToken()
-{
-    let s = ''
-    var list = document.cookie.split(';')
 
-    for (var i=0; i<list.length; i++)
-    {
-        s = list[i]
-        if (s.includes('token=')) {
-            var index = s.search('token=') + 6
-            return s.substring(index)
-        }
-    }
+function openAccount(type) {
+
+    axios.post('http://localhost:3000/bank-account/open', {account_type: type}, config)
+        .then(response =>
+        {
+            var res = Object.assign({}, response.data)
+            
+            if (res.status === 'ok') {
+                alert(res.message)
+                location.reload()
+            }
+        })
+        .catch(error =>
+        {
+            console.log(error)
+            // window.location.replace('index.html')
+        })
+}
+
+function getTransactions(account_number) {
+    console.log(account_number)
+    window.location.replace('account.html')
 }
