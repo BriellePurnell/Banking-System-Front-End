@@ -79,6 +79,9 @@ function openAccount(type) {
             var res = Object.assign({}, response.data)
             
             if (res.status === 'ok') {
+                alert('Successfully opened account')
+                location.reload()
+            } else {
                 alert(res.message)
                 location.reload()
             }
@@ -90,7 +93,24 @@ function openAccount(type) {
         })
 }
 
-function getTransactions(account_number) {
-    console.log(account_number)
-    window.location.replace('account.html')
+function goToAccount(account_number) {
+    window.location.replace(`account.html?num=${account_number}`)
+}
+
+function getTransactions() {
+    var array = window.location.href.split('?')
+    var key_value = array[1]
+    var account = key_value.split('=')[1]
+    
+    axios.post('http://localhost:3000/bank-account', { account_number: account }, config)
+        .then(response =>
+        {
+            var res = Object.assign({}, response.data)
+            console.log(res)
+        })
+        .catch(error =>
+        {
+            console.log(error)
+            // window.location.replace('index.html')
+        })
 }
