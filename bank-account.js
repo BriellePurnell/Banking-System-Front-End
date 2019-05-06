@@ -7,8 +7,7 @@ function getToken()
     let s = ''
     var list = document.cookie.split(';')
 
-    for (var i=0; i<list.length; i++)
-    {
+    for (var i=0; i<list.length; i++) {
         s = list[i]
         if (s.includes('token=')) {
             var index = s.search('token=') + 6
@@ -22,12 +21,10 @@ function getAccountOptions() {
     resultElement.innerHTML = ''
 
     axios.get('http://localhost:3000/home', config)
-        .then(response => 
-        {
+        .then(response => {
             resultElement.innerHTML = generateAccountList(response)
         })
-        .catch(error =>
-        {
+        .catch(error => {
             console.log(error)
             resultElement.innerHTML = generateErrorHTMLOutput(error)
         })
@@ -35,11 +32,9 @@ function getAccountOptions() {
 
 function generateAccountList(response) {
     var res = Object.assign({}, response.data)
-
-    // console.log(res)
     
     if (res.status === 'ok') {
-        var result = ''
+        var result = '<option selected>Choose...</option>'
         var format = ''
         var type = ''
 
@@ -52,8 +47,8 @@ function generateAccountList(response) {
             }
             
             format = `<option value=${res.message[i].account_number}>
-                ${type} - ${res.message[i].account_number}
-                </option>`
+                ${type} - ${res.message[i].account_number} - 
+                $${res.message[i].balance}</option>`
             
             result += format
         }
@@ -74,8 +69,7 @@ function generateErrorHTMLOutput(error) {
 function openAccount(type) {
 
     axios.post('http://localhost:3000/bank-account/open', {account_type: type}, config)
-        .then(response =>
-        {
+        .then(response =>{
             var res = Object.assign({}, response.data)
             
             if (res.status === 'ok') {
@@ -86,8 +80,7 @@ function openAccount(type) {
                 location.reload()
             }
         })
-        .catch(error =>
-        {
+        .catch(error =>{
             console.log(error)
             // window.location.replace('index.html')
         })
@@ -103,14 +96,96 @@ function getTransactions() {
     var account = key_value.split('=')[1]
     
     axios.post('http://localhost:3000/bank-account', { account_number: account }, config)
-        .then(response =>
-        {
+        .then(response => {
             var res = Object.assign({}, response.data)
             console.log(res)
         })
-        .catch(error =>
-        {
+        .catch(error => {
             console.log(error)
             // window.location.replace('index.html')
         })
+}
+
+function deposit() {
+    var amount = parseFloat(document.getElementById('depositAmount').value)
+    var account = parseInt(document.getElementById('depositOptions').value)
+
+    if (!isNaN(account) && !isNaN(amount)) {
+        const data = {
+            account_number: account,
+            amount: amount,
+            description: 'ATM deposit'
+        }
+        console.log(data)
+        axios.post('http://localhost:3000/bank-account/deposit', data, config)
+            .then(response => {
+                var res = Object.assign({}, response.data)
+                
+                if(res.status === 'ok') {
+                    alert(res.message)
+                    window.location.replace(`home.html`)
+                } else {
+                    alert(res.message)
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    } else {
+        alert('Invalid account or deposit amount.')
+    }
+}
+
+function getSourceOptions() {
+    var resultElement = document.getElementById('transferSource')
+    resultElement.innerHTML = ''
+
+    axios.get('http://localhost:3000/home', config)
+        .then(response => {
+            resultElement.innerHTML = generateAccountList(response)
+        })
+        .catch(error => {
+            console.log(error)
+            resultElement.innerHTML = generateErrorHTMLOutput(error)
+        })
+}
+
+function getDestinationOptions() {
+    var resultElement = document.getElementById('transferDestination')
+    resultElement.innerHTML = ''
+
+    axios.get('http://localhost:3000/home', config)
+        .then(response => {
+            resultElement.innerHTML = generateAccountList(response)
+        })
+        .catch(error => {
+            console.log(error)
+            resultElement.innerHTML = generateErrorHTMLOutput(error)
+        })
+}
+
+function internalTransfer() {
+    var source = parseInt(document.getElementById('transferSource').value)
+    var destination = parseInt(document.getElementById('transferDestination').value)
+    var amount = parseFloat(document.getElementById('transferAmount').value)
+    const data = {
+        source: source,
+        destination: destination,
+        amount: amount
+    }
+
+    if (!isNaN(source) && !isNaN(destination) && !isNaN(amount) && source != destination) {
+        axios.post('http://localhost:3000/bank-account/transfer', data, config)
+            .then(response => {
+                var res = Object.assign({}, response.data)
+                
+                if (res.status === 'ok') {
+                    alert(res.message)
+                    window.location.replace(`home.html`)
+                }
+                console.log(res)
+            })
+    } else {
+        console.log('not ok')
+    }
 }

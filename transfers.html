@@ -47,28 +47,20 @@
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">From</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">Checking - 6789</option>
-                <option value="2">Savings - 3344</option>
-            </select>
+            <select class="custom-select" id="transferSource"></select>
         </div>
 
         <div class="input-group mb-3" style="width:550px">
             <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">To</label>
             </div>
-            <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Choose...</option>
-                <option value="1">Checking - 6789</option>
-                <option value="2">Savings - 3344</option>
-            </select>
+            <select class="custom-select" id="transferDestination"></select>
         </div>
         
     </div>
     <div class="container">
             <div class="row">
-                <div class="col-sm-offset-4 col-sm-4">
+                <!-- <div class="col-sm-offset-4 col-sm-4">
                     <h2>Select Date</h2>
                     <hr/>
                     <div class="date-picker"  data-date="2014-02-03">
@@ -90,7 +82,7 @@
                             </h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
             <input type="hidden" id="dateinput" name="date"></input>
@@ -103,8 +95,13 @@
                 <div class="input-group-prepend">
                 <div class="input-group-text">$</div>
                 </div>
-                <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Amount">
+                <input type="number" step="0.01" class="form-control" id="transferAmount" placeholder="Amount">
             </div>
         </div>
-        <a class="btn btn-primary" href="#" role="button" style="margin-left: 538px">Submit</a>
-        
+        <a class="btn btn-primary" href="javascript:internalTransfer()" role="button" style="margin-left: 538px">Submit</a>
+
+        <script src="bank-account.js"></script>
+        <script type="text/javascript">getSourceOptions()</script>
+        <script type="text/javascript">getDestinationOptions()</script>
+</body>
+
