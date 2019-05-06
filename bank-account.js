@@ -260,6 +260,30 @@ function getTransactionHistory(message) {
     return result + '</tbody></table>'
 }
 
+function freezeAccount() {
+    var array = window.location.href.split('?')
+    var key_value = array[1]
+    var account = key_value.split('=')[1]
+
+    axios.put('http://localhost:3000/bank-account/close', 
+        { account_number : account }, config)
+        .then(response => {
+            var res = Object.assign({}, response.data)
+            
+            if (res.status === 'ok') {
+                alert(res.message)
+                window.location.replace('home.html')
+            } else {
+                alert(res.message)
+            }
+        })
+        .catch(error => {
+            console.log(error.stack)
+            alert('Unable to close account.')
+            window.location.replace('home.html')
+        })
+}
+
 // format
 // <tr>
 // <td> 04/09/2019</td>
