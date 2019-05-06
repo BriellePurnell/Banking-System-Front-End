@@ -97,12 +97,12 @@ function getTransactions() {
     var titleElement = document.getElementById('accountTitle')
     var balanceElement = document.getElementById('accountBalance')
     var transactionElement = document.getElementById('transactionHistory')
-    
-    console.log(transactionElement)
+    var editAccountElement = document.getElementById('editAccount')
 
     titleElement.innerHTML = ''
     balanceElement.innerHTML = ''
     transactionElement.innerHTML = ''
+    editAccountElement.innerHTML = ''
 
     var array = window.location.href.split('?')
     var key_value = array[1]
@@ -116,14 +116,15 @@ function getTransactions() {
                 titleElement.innerHTML = getAccountTitle(res.message[0])
                 balanceElement.innerHTML = getAccountBalance(res.message[0])
                 transactionElement.innerHTML = getTransactionHistory(res.message)
-                console.log(res.message[0])
+                editAccountElement.innerHTML = getAccountInfo(res.message[0])
             } else {
                 console.log(res.message)
-                alert('Something went wrong.')
+                alert('Unable to load page properly.')
             }
         })
         .catch(error => {
             console.log(error)
+            alert('Something went wrong.')
             window.location.replace('index.html')
         })
 }
@@ -138,7 +139,7 @@ function deposit() {
             amount: amount,
             description: 'ATM deposit'
         }
-        console.log(data)
+
         axios.post('http://localhost:3000/bank-account/deposit', data, config)
             .then(response => {
                 var res = Object.assign({}, response.data)
@@ -204,11 +205,20 @@ function internalTransfer() {
                 if (res.status === 'ok') {
                     alert(res.message)
                     window.location.replace(`home.html`)
+                } else {
+                    alert(res.message)
+                    window.location.replace('home.html')
                 }
-                console.log(res)
+
+            })
+            .catch(error => {
+                console.error(error)
+                alert('Something went wrong.')
+                window.location.replace('home.html')
             })
     } else {
         console.log('not ok')
+        alert('Invalid input')
     }
 }
 
@@ -220,6 +230,40 @@ function getAccountTitle(account) {
 function getAccountBalance(account) {
     return `<h5 style="width: 18rem; margin-left:4rem; margin-top: 2rem">
     Available Balance: <span style="margin-left:2rem">$${account.balance}</span></h5>`
+}
+
+function getAccountInfo(account) {
+    const table_head = `
+    <thead class="thead-light">
+        <tr>
+        <th scope="col">Account #</th>
+        <th scope="col">Account Type</th>
+        <th scope="col">Custom Account Nickname</th>
+        </tr>
+    </thead>`
+
+    var type = ''
+
+    if (account.account_type === 'c') {
+        type = 'Checking'
+    } else {
+        type = 'Savings'
+    }
+
+    var table_body = `
+    <tbody>
+    <tr>
+    <td>${account.account_number}</td>
+    <td>${type}</td>
+    <td>
+        <div class="input-group input-group-sm mb-3">
+            <input type="text" class="form-control" id="newName" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        </div>
+    </td>
+    </tr>
+    </tbody>`
+
+    return '<table class="table">' + table_head + table_body + '</table>'
 }
 
 function dateFormat(date) {
@@ -284,10 +328,29 @@ function freezeAccount() {
         })
 }
 
-// format
-// <tr>
-// <td> 04/09/2019</td>
-// <td>AMAZON PRIME</td>
-// <td>-$12.99</td>
-// <td>$512.99</td>
-// </tr>
+function editCustomName() {
+    var name = document.getElementById('newName').value
+    var array = window.location.href.split('?')
+    var key_value = array[1]
+    var account = key_value.split('=')[1]
+    const data = { number: account, name: name}
+
+    axios.put('http://localhost:3000/bank-account/name', data, config)
+        .then(response => {
+            var res = Object.assign({}, response.data)
+            
+            if (res.status === 'ok') {
+                alert('Bank account name updated.')
+                location.reload()
+            } else {
+                console.log(res.message)
+                alert(res.message)
+                window.location.replace('home.html')            
+            }
+        })
+        .catch(error =>{
+            console.error(error)
+            alert('Unable to change account name.')
+            window.location.replace('home.html')            
+        })
+}   

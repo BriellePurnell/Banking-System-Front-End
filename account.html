@@ -53,47 +53,12 @@
                     </button>
                 </div>
             <div class="modal-body">
-                <p>Here are all of your accounts. You can change the name of any account to suit your needs. 
-                    Also, you can toggle if you want that account to be displayed or not. Make sure to save any changes.</p>
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                        <th scope="col">Account #</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Custom Account Nickname</th>
-                        <th scope="col">Display</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>0123456789</td>
-                        <td>Checking</td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                <div class="handle"></div>
-                            </button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>0011223344</td>
-                        <td>Savings</td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <p>Here is your account. You can change the name of any account to suit your needs.</p>
+                <div id="editAccount"></div>    
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" onclick="editCustomName()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
