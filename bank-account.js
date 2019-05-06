@@ -117,11 +117,14 @@ function getTransactions() {
                 balanceElement.innerHTML = getAccountBalance(res.message[0])
                 transactionElement.innerHTML = getTransactionHistory(res.message)
                 console.log(res.message[0])
+            } else {
+                console.log(res.message)
+                alert('Something went wrong.')
             }
         })
         .catch(error => {
             console.log(error)
-            // window.location.replace('index.html')
+            window.location.replace('index.html')
         })
 }
 
@@ -219,6 +222,13 @@ function getAccountBalance(account) {
     Available Balance: <span style="margin-left:2rem">$${account.balance}</span></h5>`
 }
 
+function dateFormat(date) {
+    var year = date.substring(0, 4)
+    var month = date.substring(5, 7)
+    var day = date.substring(8, 10)
+    return month + '/' + day + '/' + year
+}
+
 function getTransactionHistory(message) {
     console.log(message)
     var result = 
@@ -248,13 +258,6 @@ function getTransactionHistory(message) {
     }
 
     return result + '</tbody></table>'
-}
-
-function dateFormat(date) {
-    var year = date.substring(0, 4)
-    var month = date.substring(5, 7)
-    var day = date.substring(8, 10)
-    return month + '/' + day + '/' + year
 }
 
 // format
