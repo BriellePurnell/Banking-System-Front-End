@@ -53,10 +53,7 @@
     <div class="input-group" style="margin-left:4rem; width: 550px;">
         <div class="form-group">
             <label for="exampleFormControlSelect1">Choose which account you would like to deposit to.</label>
-            <select class="form-control" id="depositOptions">
-                <option>Checking - 6789</option>
-                <option>Savings - 3344</option>
-            </select>
+            <select class="form-control" id="depositOptions"></select>
         </div>
         <p> After taking a picture of your check, front and back, upload it.</p>
     </div>
@@ -66,7 +63,13 @@
         <input type="file" class="custom-file-input" id="inputGroupFile04">
         <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
     </div>
-    <a class="btn btn-primary" href="#" role="button">Submit</a>
+    <div class="input-group" style="margin-left: 4rem; width: 550px; margin-top: 1rem;">
+            <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+            </div>
+            <input type="text" class="form-control" id="depositAmount" placeholder="Amount">
+            <a class="btn btn-primary" href="#" role="button">Submit</a>
+    </div>
 
   <script src="bank-account.js"></script>
 </body>
