@@ -66,9 +66,12 @@ function generateErrorHTMLOutput(error) {
 }
 
 
-function openAccount(type) {
+function openAccount(name, type) {
 
-    axios.post('http://localhost:3000/bank-account/open', {account_type: type}, config)
+    axios.post('http://localhost:3000/bank-account/open', {
+        name: name,
+        type: type
+    }, config)
         .then(response =>{
             var res = Object.assign({}, response.data)
             
@@ -91,6 +94,16 @@ function goToAccount(account_number) {
 }
 
 function getTransactions() {
+    var titleElement = document.getElementById('accountTitle')
+    var balanceElement = document.getElementById('accountBalance')
+    var transactionElement = document.getElementById('transactionHistory')
+    
+    console.log(transactionElement)
+
+    titleElement.innerHTML = ''
+    balanceElement.innerHTML = ''
+    transactionElement.innerHTML = ''
+
     var array = window.location.href.split('?')
     var key_value = array[1]
     var account = key_value.split('=')[1]
@@ -98,7 +111,13 @@ function getTransactions() {
     axios.post('http://localhost:3000/bank-account', { account_number: account }, config)
         .then(response => {
             var res = Object.assign({}, response.data)
-            console.log(res)
+            
+            if (res.status === 'ok') {
+                titleElement.innerHTML = getAccountTitle(res.message[0])
+                balanceElement.innerHTML = getAccountBalance(res.message[0])
+                transactionElement.innerHTML = getTransactionHistory(res.message)
+                console.log(res.message[0])
+            }
         })
         .catch(error => {
             console.log(error)
@@ -189,3 +208,59 @@ function internalTransfer() {
         console.log('not ok')
     }
 }
+
+function getAccountTitle(account) {
+    return `<h2 class="font-weight-bold" style="margin-left: 4rem; margin-top: 2rem; 
+    display: inline-block">${account.name} - ${account.account_number}</h2>`
+}
+
+function getAccountBalance(account) {
+    return `<h5 style="width: 18rem; margin-left:4rem; margin-top: 2rem">
+    Available Balance: <span style="margin-left:2rem">$${account.balance}</span></h5>`
+}
+
+function getTransactionHistory(message) {
+    console.log(message)
+    var result = 
+    `<table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Description</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Balance</th>
+        </tr>
+        </thead>
+        <tbody>`
+
+    var format = ''
+
+    for (i=1; i<message.length; i++) {
+        format = 
+        `<tr>
+        <td>${dateFormat(message[i].date)}</td>
+        <td>${message[i].description}</td>
+        <td>$${message[i].amount}</td>
+        <td>$${message[i].balance}</td>
+        </tr>`
+    
+        result += format
+    }
+
+    return result + '</tbody></table>'
+}
+
+function dateFormat(date) {
+    var year = date.substring(0, 4)
+    var month = date.substring(5, 7)
+    var day = date.substring(8, 10)
+    return month + '/' + day + '/' + year
+}
+
+// format
+// <tr>
+// <td> 04/09/2019</td>
+// <td>AMAZON PRIME</td>
+// <td>-$12.99</td>
+// <td>$512.99</td>
+// </tr>

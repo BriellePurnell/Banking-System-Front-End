@@ -11,7 +11,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
-<body onload="getTransactions()">
+<body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Online Banking</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,8 +38,8 @@
         </div>
     </nav>
 
-    <h2 class="font-weight-bold" style="margin-left: 4rem; margin-top: 2rem; display: inline-block">Checking - 0123456789</h2>
-
+    <p id="accountTitle"></p>
+    
     <!--Edit Accounts Modal-->
     <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal" style="margin-left: 1rem">Edit Account</button>
     
@@ -133,41 +133,13 @@
 
         <button type="button" class="btn btn-danger">Freeze Account</button>
 
-        <h5 style="width: 18rem; margin-left:4rem; margin-top: 2rem">Available Balance: <span style="margin-left:2rem">$500.00</span></h5>
+        <p id=accountBalance></p>
 
         <h5 style="width: 18rem; margin-left:4rem; margin-top: 2rem">Transaction History</h5>
-        <div style="margin-left: 4rem; margin-right: 4rem">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Description</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Balance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>04/11/2019</td>
-                <td>WALMART SAN JOSE</td>
-                <td>-$52.58</td>
-                <td>$500.00</td>
-                </tr>
-                <tr>
-                <td> 04/09/2019</td>
-                <td>AMAZON PRIME</td>
-                <td>-$12.99</td>
-                <td>$512.99</td>
-                </tr>
-                <tr>
-                <td>04/07/2019</td>
-                <td>SJSU SCHOOLFEES</td>
-                <td>-$2050.00</td>
-                <td>$2562.99</td>
-                </tr>
-            </tbody>
-        </table>
+        <div id="transactionHistory" style="margin-left: 4rem; margin-right: 4rem">
+            
         </div>
         
         <script src="bank-account.js"></script>
+        <script type="text/javascript">getTransactions()</script>
 </body>

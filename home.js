@@ -16,17 +16,16 @@ function getAccounts() {
     });
 }
 
-
-
 function generateSuccessHTMLOutput(response){
-    response = Object.assign({}, response.data)
+    var res = Object.assign({}, response.data)
     
+    console.log(res)
     var account_type = ''
     var result = ''
     var format = ''
     
-    for(i=0; i<response.message.length; i++){
-        if(response.message[i].account_type === 'c'){
+    for(i=0; i<res.message.length; i++){
+        if(res.message[i].account_type === 'c'){
             account_type = 'Checking'
         } else {
             account_type = 'Savings'
@@ -34,9 +33,9 @@ function generateSuccessHTMLOutput(response){
         
         format=`<div class="card" style="width: 18rem; margin-left:4rem; margin-top: 2rem; display: inline-block">
         <div class="card-body">
-            <h5 class="card-title">${account_type} <span style="float: right">$${response.message[i].balance}</span></h5>
-            <p class="card-text">Account number ${response.message[i].account_number}</p>
-            <a href="#" onclick="goToAccount(${response.message[i].account_number})" class="btn btn-primary">Go to ${account_type} Account</a>
+            <h5 class="card-title">${res.message[i].name} <span style="float: right">$${res.message[i].balance}</span></h5>
+            <p class="card-text">Account number ${res.message[i].account_number}</p>
+            <a href="#" onclick="goToAccount(${res.message[i].account_number})" class="btn btn-primary">Go to ${account_type} Account</a>
         </div>
         </div>`
 
