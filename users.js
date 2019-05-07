@@ -26,10 +26,13 @@ function loginSuccessful(response){
         window.location.replace("home.html");
     } else {
         alert(res.message)
+        location.reload()
     }
 }
 
 function loginFailed(error) {
     console.error(error)
+    alert('Something went wrong.')
     window.location.replace('index.html')
 }
+
