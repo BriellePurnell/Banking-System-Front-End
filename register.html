@@ -31,22 +31,21 @@
         </div>
     </nav>
 
-  <div class="container" id="userInfo">
-      <label for="userID"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="userID" id="userID" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw"required>
-  
-      <button type="submit" onclick="loginUser()">Log in</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
-  </div>
-  
-  <div class="container" id="postResult">
-    <form id=""></form>
-  </div>
+    <div class="container" id="registerInfo">
+        <label for="userID"><b>Social Secturity Number</b></label>
+        <input type="text" placeholder="Enter Social Security Number" name="userID" 
+        id="username" pattern="[0-9]{3}-[0-9]{2}-[0-9]{4}" required>
+        <span>Format: 123-45-6789</span>
+        <br>
+        <label for="userID"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="userID" id="username" required>
+        <br>
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="password"required>
 
-  <script src="users.js"></script>
+        <!-- change to registerUser() -->
+        <button type="submit" onclick="loginUser()">Log in</button> 
+    </div>
+
+    <script src="users.js"></script>
 </body>

@@ -1,9 +1,3 @@
-var submit = document.getElementById('userID')
-var userInfo = document.getElementById('userInfo')
-
-console.log(submit)
-console.log(userInfo)
-
 function loginUser() {
     var resultElement = document.getElementById('userInfo');
     var username = document.getElementById('userID').value;
@@ -18,46 +12,24 @@ function loginUser() {
         resultElement.innerHTML = loginSuccessful(response);
     })
     .catch(error => {
-        resultElement.innerHTML = loginUnsuccessful(error);
+        resultElement.innerHTML = loginFailed(error);
     });
 }
 
-function getMeTestingEndpoint() {
-    axios.get('http://localhost:3000/users/me', {})
-    .then(response => {
-        console.log(response)
-    })
-    .catch(err => {
-        console.error(err)
-    })
-}
-
 function loginSuccessful(response){
-    response = Object.assign({}, response.data)
-    console.log(response)
-    document.cookie = "token=" + response.token
-    document.cookie = "expiresIn=" + response.expiresIn
-    var token = getToken(document.cookie)
-    alert('You are logged in')
-    console.log(response)
-    window.location.replace("home.html");
+    res = Object.assign({}, response.data)
+
+    if (res.status === 'ok') {
+        document.cookie = "token=" + res.token
+        document.cookie = "expiresIn=" + res.expiresIn
+        alert('You are logged in')
+        window.location.replace("home.html");
+    } else {
+        alert(res.message)
+    }
 }
 
-function loginUnsuccessful(error) {
-    return JSON.stringify(error.data)
-}
-
-function getToken(cookie)
-{
-    let str = ''
-    var cookiearray = cookie.split(';')
-
-    for (var i=0; i<cookiearray.length; i++)
-    {
-    str = cookiearray[i]
-    if (str.includes('token=')) {
-        var index = str.search('token=') + 6
-        return str.substring(index)
-    }
-    }
+function loginFailed(error) {
+    console.error(error)
+    window.location.replace('index.html')
 }
