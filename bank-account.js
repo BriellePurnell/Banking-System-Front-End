@@ -2,8 +2,7 @@ const config = {
     headers: { 'x-access-token' : getToken() }       
 }
 
-function getToken()
-{
+function getToken(){
     let s = ''
     var list = document.cookie.split(';')
 
