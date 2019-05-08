@@ -21,7 +21,7 @@ function loginSuccessful(response){
 
     if (res.status === 'ok') {
         document.cookie = "token=" + res.token
-        document.cookie = "expiresIn=" + res.expiresIn
+        document.cookie = "expires=" + res.expiresIn
         alert('You are logged in')
         window.location.replace("home.html");
     } else {
@@ -68,4 +68,9 @@ function registerUser() {
         })
 
     return false
+}
+
+function logOutUser() {
+    document.cookie = "token=; expires=Thu, 18 Dec 2013 12:00:00 UTC;"
+    window.location.replace('index.html')
 }
