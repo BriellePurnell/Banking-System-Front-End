@@ -36,3 +36,36 @@ function loginFailed(error) {
     window.location.replace('index.html')
 }
 
+function validateRegisterForm() {
+
+}
+
+function registerUser() {
+    var ssn = document.getElementById('ssn').value
+    var username = document.getElementById('username').value
+    var password = document.getElementById('password').value
+
+    const data = {
+        username: username,
+        password: password,
+        ssn: ssn
+    }
+
+    axios.post('http://localhost:3000/users/register', data)
+        .then(response => {
+            var res = Object.assign({}, response.data)
+            
+            if (res.status === 'ok') {
+                alert('User is now registered.')
+                window.location.replace('login.html')
+            } else {
+                alert(res.message)
+            }
+        })
+        .catch(error => {
+            console.error(error)
+            alert('Something went wrong.')
+        })
+
+    return false
+}
