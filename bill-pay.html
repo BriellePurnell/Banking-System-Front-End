@@ -14,7 +14,7 @@
 <body>
     <!--Navigation Bar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="home.html">Online Banking</a>
+        <a class="navbar-brand" href="#">Online Banking</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,13 +40,13 @@
     </nav>
 
     <!--How to pay bills-->
-    <div style="margin-left: 4rem">
+    <div style="margin-right: 4rem">
         <h2 class="font-weight-bold" style="margin-top: 2rem">Pay Your Bills</h2>
         <p class="lead">How to pay your bills: quick and easy!</p>
         <ol>
             <li>Pick a bill you want to pay.</li>
             <li>Enter the information from your bill.</li>
-            <li>Choose amount.</li>
+            <li>Choose how much and when.</li>
         </ol>
     </div>
 
@@ -54,15 +54,16 @@
     <div style="margin:4rem">
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-bill-tab" data-toggle="tab" href="#nav-bill" role="tab" aria-controls="nav-bill" aria-selected="true">1. Pick a bill</a>
-                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">2. Enter info</a>
-                <a class="nav-item nav-link" id="nav-quantity-tab" data-toggle="tab" href="#nav-quantity" role="tab" aria-controls="nav-quantity" aria-selected="false">3. How much and when</a>
+                <a class="nav-item nav-link active" id="nav-bill-tab" data-toggle="tab" href="#nav-bill" role="tab" aria-controls="nav-bill" aria-selected="true">1. Bills</a>
+                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">2. Account information</a>
+                <a class="nav-item nav-link" id="nav-quantity-tab" data-toggle="tab" href="#nav-quantity" role="tab" aria-controls="nav-quantity" aria-selected="false">3. Amount</a>
             </div>
         </nav>
 
+       
         <div class="tab-content" id="nav-tabContent">
              <!--Pick a bill content-->
-            <div class="tab-pane fade show active" id="nav-bill" role="tabpanel" aria-labelledby="nav-bill-tab">
+             <div class="tab-pane fade show active" id="nav-bill" role="tabpanel" aria-labelledby="nav-bill-tab">
                 <h5>Utilities</h5>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
@@ -71,14 +72,14 @@
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                    <label class="form-check-label" for="exampleRadios2">
                     San Jose Water Company
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" checked>
+                    <label class="form-check-label" for="exampleRadios3">
                         City of San Jose Utility
                     </label>
                 </div>
@@ -86,76 +87,81 @@
 
                 <h5>Phone</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4" checked>
+                    <label class="form-check-label" for="exampleRadios4">
                     AT&T
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5" checked>
+                    <label class="form-check-label" for="exampleRadios5">
                     Sprint
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option6" checked>
+                    <label class="form-check-label" for="exampleRadios6">
                         Verizon Wireless
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios7" value="option7" checked>
+                    <label class="form-check-label" for="exampleRadios7">
                         Metro PCS
                     </label>
                 </div>
 
                 <h5>Credit Cards</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios8" value="option8" checked>
+                    <label class="form-check-label" for="exampleRadios8">
                         Bank of America
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios9" value="option9" checked>
+                    <label class="form-check-label" for="exampleRadios9">
                         Chase Credit Cards
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios10" value="option10" checked>
+                    <label class="form-check-label" for="exampleRadios10">
                         Citibank
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios11" value="option11" checked>
+                    <label class="form-check-label" for="exampleRadios11">
                         Wells Fargo Credit Cards
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios12" value="option12" checked>
+                    <label class="form-check-label" for="exampleRadios12">
                         US Bank Credit Cards
                     </label>
                 </div>
-            </div>
+        </div>
 
             <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Account Number</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">Enter the account number of whatever bill you are trying to pay.</small>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Account Number">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
             </div>
 
-            <div class="tab-pane fade" id="nav-quality" role="tabpanel" aria-labelledby="nav-quality-tab">
-                
+            <div class="tab-pane fade" id="nav-quantity" role="tabpanel" aria-labelledby="nav-quantity-tab">
+                <form>
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">Specify Amount</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Amount to pay">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
             </div>
         </div>
     </div>
