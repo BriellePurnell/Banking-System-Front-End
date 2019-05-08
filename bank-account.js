@@ -54,7 +54,8 @@ function generateAccountList(response) {
 
         return result
     } else {
-        alert('Error: ' + res.message)
+        console.error(error)
+        alert('Something went wrong.')
         window.location.replace('home.html')
     }
 }
@@ -273,7 +274,6 @@ function dateFormat(date) {
 }
 
 function getTransactionHistory(message) {
-    console.log(message)
     var result = 
     `<table class="table table-striped">
         <thead>
@@ -352,4 +352,49 @@ function editCustomName() {
             alert('Unable to change account name.')
             window.location.replace('home.html')            
         })
-}   
+}
+
+function getAccountPayOptions() {
+    var resultElement = document.getElementById('payOptions')
+    resultElement.innerHTML = ''
+
+    axios.get('http://localhost:3000/home', config)
+    .then(response => {
+        resultElement.innerHTML = generateAccountList(response)
+    })
+    .catch(error => {
+        console.log(error)
+        resultElement.innerHTML = generateErrorHTMLOutput(error)
+    })
+}
+
+// function payBill() {
+//     var description = document.getElementById('paymentDescription').value
+//     var account = document.getElementById('payOptions').value
+//     var amount = document.getElementById('payAmount').value
+
+//     const data = {
+//         account_number: account,
+//         amount: amount,
+//         description: description
+//     }
+
+//     axios.post('http://localhost:3000/bank-account/withdrawal', data, config)
+//         .then(response => {
+//             var res = Object.assign({}, response.data)
+            
+//             if (res.status == 'ok') {
+//                 alert('Payment was successful.')
+//                 window.location.replace('home.html')
+//             } else {
+//                 alert(res.message)
+//             }
+//         })
+//         .catch(error => {
+//             console.error(error)
+//             alert('Something went wrong')
+//             window.location.replace('index.html')
+//         })
+
+//     return false
+// }
