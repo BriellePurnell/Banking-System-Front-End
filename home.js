@@ -12,6 +12,10 @@ function getAccounts() {
 
         if (res.status == 'ok') {
             resultElement.innerHTML = generateSuccessHTMLOutput(res);
+        }
+        else if (res.status == 'bad-token') {
+            alert('Missing authorization.')
+            window.location.replace('index.html')
         } else {
             alert(res.message)
         }

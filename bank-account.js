@@ -27,7 +27,7 @@ function getAccountOptions(elementId) {
                 resultElement.innerHTML = generateAccountList(res)
             }
             else if (res.status == 'bad-token') {
-                alert('Missing authorization.')
+                alert('Not authorized to view this page.')
                 window.location.replace('index.html')
             } else {
                 alert(res.message)
@@ -114,9 +114,13 @@ function getTransactions() {
                 balanceElement.innerHTML = getAccountBalance(res.message[0])
                 transactionElement.innerHTML = getTransactionHistory(res.message)
                 editAccountElement.innerHTML = getAccountInfo(res.message[0])
-            } else {
-                console.log(res.message)
-                alert('Unable to load page properly.')
+            }
+            else if(res.status == 'bad-token') {
+                alert('Not authorized to view this page.')
+                window.location.replace('index.html')
+            }else {
+                alert(res.message)
+                window.location.replace('home.html')
             }
         })
         .catch(error => {
