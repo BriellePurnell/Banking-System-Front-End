@@ -164,6 +164,7 @@ function internalTransfer() {
     var source = parseInt(document.getElementById('transferSource').value)
     var destination = parseInt(document.getElementById('transferDestination').value)
     var amount = parseFloat(document.getElementById('transferAmount').value)
+    
     const data = {
         source: source,
         destination: destination,
@@ -356,6 +357,22 @@ function payBill() {
     } else {
         alert('Invalid amount.')
     }
+}
+
+function getAtmLocation() {
+    axios.get('http://localhost:3000/users/atm-location', config)   
+        .then(response => {
+            var res = Object.assign({}, response.data)
+            
+            if (res.status == 'bad-token') {
+                alert('Not authorized to view this page.')
+                window.location.replace('index.html')
+            }
+        })
+        .catch(error => {
+            alert('Something went wrong.')
+            window.location.replace('index.html')
+        })
 }
 
 // var currentTab = 0; // Current tab is set to be the first tab (0)
