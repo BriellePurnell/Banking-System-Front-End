@@ -164,7 +164,7 @@ function internalTransfer() {
     var source = parseInt(document.getElementById('transferSource').value)
     var destination = parseInt(document.getElementById('transferDestination').value)
     var amount = parseFloat(document.getElementById('transferAmount').value)
-    
+
     const data = {
         source: source,
         destination: destination,
@@ -337,7 +337,7 @@ function payBill() {
         description: description
     }
 
-    if (amount > 0) {
+    if (!isNaN(account) && !isNaN(amount) && amount > 0) {
         axios.post('http://localhost:3000/bank-account/withdrawal', data, config)
             .then(response => {
                 var res = Object.assign({}, response.data)
@@ -354,8 +354,13 @@ function payBill() {
                 alert('Something went wrong')
                 window.location.replace('index.html')
             })
-    } else {
-        alert('Invalid amount.')
+    } 
+    else if (isNaN(account)) {
+        alert('Please specify account.')
+    }
+    else if (amount <= 0) {
+        console.log(amount)
+        alert('Amount needs to be number greater than 0.')
     }
 }
 
@@ -448,17 +453,17 @@ function getAtmLocation() {
 //     x[n].className += " active";
 // }
 
-// function getRadioVal(form, name) {
-//     var val;
-//     // get list of radio buttons with specified name
-//     var radios = form.elements[name];
+function getRadioVal(form, name) {
+    var val;
+    // get list of radio buttons with specified name
+    var radios = form.elements[name];
     
-//     // loop through list of radio buttons
-//     for (var i=0, len=radios.length; i<len; i++) {
-//         if ( radios[i].checked ) { // radio checked?
-//             val = radios[i].value; // if so, hold its value in val
-//             break; // and break out of for loop
-//         }
-//     }   
-//     return val; // return value of checked radio or undefined if none checked
-// }
+    // loop through list of radio buttons
+    for (var i=0, len=radios.length; i<len; i++) {
+        if ( radios[i].checked ) { // radio checked?
+            val = radios[i].value; // if so, hold its value in val
+            break; // and break out of for loop
+        }
+    }   
+    return val; // return value of checked radio or undefined if none checked
+}
