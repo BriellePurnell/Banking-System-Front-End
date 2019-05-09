@@ -35,69 +35,15 @@
                 <a class="nav-link" href="atm-locator.html">ATM Locator</a>
             </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <a href="javascript:logOutUser()">Logout </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
     <h2 class="font-weight-bold" style="margin-left: 4rem; margin-top: 2rem; display: inline-block">Accounts Summary</h2>
-
-    <!--Edit Accounts Modal-->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal" style="margin-left: 1rem">Edit Accounts</button>
-    
-    <div class="modal fade" id="editAccountModal" role="dialog" tabindex="-1"aria-labelledby="editAccountModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editAccountModalLabel">Edit Accounts</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                    <p>Here are all of your accounts. You can change the name of any account to suit your needs. 
-                    Also, you can toggle if you want that account to be displayed or not. Make sure to save any changes.</p>
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                        <th scope="col">Account #</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Custom Account Nickname</th>
-                        <th scope="col">Display</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td>0123456789</td>
-                        <td>Checking</td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                <div class="handle"></div>
-                            </button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <td>0011223344</td>
-                        <td>Savings</td>
-                        <td>
-                            <div class="input-group input-group-sm mb-3">
-                                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-    </div>
 
     
     <!--Open an account modal-->
@@ -133,4 +79,5 @@
 
   <script src="home.js"></script>
   <script src="bank-account.js"></script>
+  <script src="users.js"></script>
 </body>

@@ -8,7 +8,14 @@ function getAccounts() {
 
     axios.get('http://localhost:3000/home', config)
     .then(response => {
-        resultElement.innerHTML = generateSuccessHTMLOutput(response);
+        var res = Object.assign({}, response.data)
+
+        if (res.status == 'ok') {
+            resultElement.innerHTML = generateSuccessHTMLOutput(res);
+        } else {
+            alert(res.message)
+            resultElement.innerHTML = generateErrorHTMLOutput(error);
+        }
     })
     .catch(error => {
         console.log(error)
@@ -16,11 +23,8 @@ function getAccounts() {
     });
 }
 
-function generateSuccessHTMLOutput(response){
-    var res = Object.assign({}, response.data)
-    
-    console.log(res)
-    var account_type = ''
+function generateSuccessHTMLOutput(res){
+    var account_type = response.account_type
     var result = ''
     var format = ''
     

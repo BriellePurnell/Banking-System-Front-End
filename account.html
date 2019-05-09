@@ -38,65 +38,36 @@
         </div>
     </nav>
 
-    <p id="accountTitle"></p>
-    
-    <!--Edit Accounts Modal-->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal" style="margin-left: 1rem">Edit Account</button>
-    
-    <div class="modal fade" id="editAccountModal" role="dialog" tabindex="-1"aria-labelledby="editAccountModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <div class="modal-body">
-                <p>Here is your account. You can change the name of any account to suit your needs.</p>
-                <div id="editAccount"></div>    
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="editCustomName()" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-    </div>
+    <p id="accountTitle" style="display:inline-block"></p>
 
-    <!--Open an account modal-->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#openAccountModal">Open an account</button>
-
-    <div class="modal fade" id="openAccountModal" role="dialog" tabindex="-1"aria-labelledby="openAccountModalLabel" aria-hidden="true">
+        <!--Edit Accounts Modal-->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal">Edit Account</button>
+        
+        <div class="modal fade" id="editAccountModal" role="dialog" tabindex="-1"aria-labelledby="editAccountModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="editAccountModalLabel">Open an account</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                        <h5 class="modal-title" id="editAccountModalLabel">Edit Account</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="modal-body" style="font-size: 12pt">
-                    <h5>Loans</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#">Auto Loan</a></li>
-                            <li class="list-group-item"><a href="#">Personal Loan</a></li>
-                            <li class="list-group-item"><a href="#">Student Loan</a></li>
-                        </ul>
-                    <h5 style="padding: 5px">Checking and Savings Accounts</h5>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><a href="#">Checking Account</a></li>
-                            <li class="list-group-item"><a href="#">Savings Account</a></li>
-                        </ul>
-                    </div>
-                    <div class="modal-footer">
+                <div class="modal-body">
+                    <p>Here is your account. You can change the name of any account to suit your needs.</p>
+                    <div id="editAccount"></div>    
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+                    <button type="button" onclick="editCustomName()" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
+        </div>
 
         <button type="button" onclick="freezeAccount()" class="btn btn-danger">Freeze Account</button>
+
+    
+    
 
         <p id=accountBalance></p>
 

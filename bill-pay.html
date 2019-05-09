@@ -40,129 +40,175 @@
     </nav>
 
     <!--How to pay bills-->
-    <div style="margin-right: 4rem">
+    <div style="margin-left: 4rem">
         <h2 class="font-weight-bold" style="margin-top: 2rem">Pay Your Bills</h2>
         <p class="lead">How to pay your bills: quick and easy!</p>
         <ol>
             <li>Pick a bill you want to pay.</li>
             <li>Enter the information from your bill.</li>
-            <li>Choose how much and when.</li>
+            <li>Choose how much.</li>
         </ol>
-    </div>
 
-    <!--Steps-->
-    <div style="margin:4rem">
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-bill-tab" data-toggle="tab" href="#nav-bill" role="tab" aria-controls="nav-bill" aria-selected="true">1. Bills</a>
-                <a class="nav-item nav-link" id="nav-info-tab" data-toggle="tab" href="#nav-info" role="tab" aria-controls="nav-info" aria-selected="false">2. Account information</a>
-                <a class="nav-item nav-link" id="nav-quantity-tab" data-toggle="tab" href="#nav-quantity" role="tab" aria-controls="nav-quantity" aria-selected="false">3. Amount</a>
-            </div>
-        </nav>
+        <form id="paymentDescription" onsubmit='return payBill()', method='post'>
 
-       
-        <div class="tab-content" id="nav-tabContent">
-             <!--Pick a bill content-->
-             <div class="tab-pane fade show active" id="nav-bill" role="tabpanel" aria-labelledby="nav-bill-tab">
+            <h1>Bill Pay:</h1>
+            
+            <!-- One "tab" for each step in the form: -->
+            <div> 1. Pick a bill:
                 <h5>Utilities</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios1" value="PG&E" checked>
                     <label class="form-check-label" for="exampleRadios1">
                     PG&E
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios2" value="San Jose Water Company" checked>
                     <label class="form-check-label" for="exampleRadios2">
                     San Jose Water Company
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios3" value="City of San Jose Utility" checked>
                     <label class="form-check-label" for="exampleRadios3">
                         City of San Jose Utility
                     </label>
                 </div>
-
-
+    
+    
                 <h5>Phone</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="option4" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios4" value="AT&T" checked>
                     <label class="form-check-label" for="exampleRadios4">
                     AT&T
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5" value="option5" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios5" value="Sprint" checked>
                     <label class="form-check-label" for="exampleRadios5">
                     Sprint
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios6" value="option6" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios6" value="Verizon Wireless" checked>
                     <label class="form-check-label" for="exampleRadios6">
                         Verizon Wireless
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios7" value="option7" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios7" value="Metro PCS" checked>
                     <label class="form-check-label" for="exampleRadios7">
                         Metro PCS
                     </label>
                 </div>
-
+    
                 <h5>Credit Cards</h5>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios8" value="option8" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios8" value="Bank of America" checked>
                     <label class="form-check-label" for="exampleRadios8">
                         Bank of America
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios9" value="option9" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios9" value="Chase Credit Cards" checked>
                     <label class="form-check-label" for="exampleRadios9">
                         Chase Credit Cards
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios10" value="option10" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios10" value="Citibank" checked>
                     <label class="form-check-label" for="exampleRadios10">
                         Citibank
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios11" value="option11" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios11" value="Wells Fargo Credit Cards" checked>
                     <label class="form-check-label" for="exampleRadios11">
                         Wells Fargo Credit Cards
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios12" value="option12" checked>
+                    <input class="form-check-input" type="radio" name="bill" id="exampleRadios12" value="US Bank Credit Cards" checked>
                     <label class="form-check-label" for="exampleRadios12">
                         US Bank Credit Cards
                     </label>
                 </div>
-        </div>
-
-            <div class="tab-pane fade" id="nav-info" role="tabpanel" aria-labelledby="nav-info-tab">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Account Number</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Account Number">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
             </div>
-
-            <div class="tab-pane fade" id="nav-quantity" role="tabpanel" aria-labelledby="nav-quantity-tab">
-                <form>
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Specify Amount</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Amount to pay">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+            
+            <div style="margin-top:1rem">2. Account Information:
+                <div class="form-group">
+                    <select class="form-control" id="payOptions"></select>
+                </div>
             </div>
-        </div>
+            
+            3. Amount:
+            <div class="input-group mb-3" style="margin-top:1rem; width:550px">
+                <label class="sr-only" for="inlineFormInputGroupUsername">Amount</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                    <div class="input-group-text">$</div>
+                    </div>
+                    <input type="number" step="0.01" class="form-control" id="payAmount" placeholder="Amount">
+                </div>
+            </div>
+            
+            <a class="btn btn-primary" href="javascript:payBill()" role="button">Submit</a>
+        </form>
+
     </div>
+
+    
+
+    <style>
+        #paymentDescription {
+            background-color: #ffffff;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        /* Style the input fields */
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+        }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none; 
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        /* Mark the active step: */
+        .step.active {
+        opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+        background-color: #4CAF50;
+        }
+    </style>
+
+    <script src="bank-account.js"></script>
+    <script type="text/javascript">getAccountPayOptions()</script>
 </body>
