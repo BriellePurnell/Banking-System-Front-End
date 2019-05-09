@@ -15,56 +15,53 @@ function getToken(){
     }
 }
 
-function getAccountOptions() {
-    var resultElement = document.getElementById('depositOptions')
+function getAccountOptions(elementId) {
+    var resultElement = document.getElementById(elementId)
     resultElement.innerHTML = ''
 
     axios.get('http://localhost:3000/home', config)
         .then(response => {
-            resultElement.innerHTML = generateAccountList(response)
+            var res = Object.assign({}, response.data)
+
+            if (res.status == 'ok') {
+                resultElement.innerHTML = generateAccountList(res)
+            }
+            else if (res.status == 'bad-token') {
+                alert('Missing authorization.')
+                window.location.replace('index.html')
+            } else {
+                alert(res.message)
+            }
         })
         .catch(error => {
-            console.log(error)
-            resultElement.innerHTML = generateErrorHTMLOutput(error)
+            console.error(error)
+            alert('Something went wrong.')
+            window.location.replace('index.html')
         })
 }
 
 function generateAccountList(response) {
-    var res = Object.assign({}, response.data)
-    
-    if (res.status === 'ok') {
-        var result = '<option selected>Choose...</option>'
-        var format = ''
-        var type = ''
+    var result = '<option selected>Choose...</option>'
+    var format = ''
+    var type = ''
 
-        for (i=0; i<res.message.length; i++) {
+    for (i=0; i<response.message.length; i++) {
 
-            if (res.message[i].account_type === 'c') {
-                type = 'Checking'
-            } else {
-                type = 'Savings'
-            }
-            
-            format = `<option value=${res.message[i].account_number}>
-                ${type} - ${res.message[i].account_number} - 
-                $${res.message[i].balance}</option>`
-            
-            result += format
+        if (response.message[i].account_type === 'c') {
+            type = 'Checking'
+        } else {
+            type = 'Savings'
         }
-
-        return result
-    } else {
-        console.error(error)
-        alert('Something went wrong.')
-        window.location.replace('home.html')
+        
+        format = `<option value=${response.message[i].account_number}>
+            ${type} - ${response.message[i].account_number} - 
+            $${response.message[i].balance}</option>`
+        
+        result += format
     }
-}
 
-function generateErrorHTMLOutput(error) {
-    alert('An error occurred:\n' + JSON.stringify(error))
-    // window.location.replace('index.html')
+    return result
 }
-
 
 function openAccount(name, type) {
 
@@ -159,34 +156,6 @@ function deposit() {
     }
 }
 
-function getSourceOptions() {
-    var resultElement = document.getElementById('transferSource')
-    resultElement.innerHTML = ''
-
-    axios.get('http://localhost:3000/home', config)
-        .then(response => {
-            resultElement.innerHTML = generateAccountList(response)
-        })
-        .catch(error => {
-            console.log(error)
-            resultElement.innerHTML = generateErrorHTMLOutput(error)
-        })
-}
-
-function getDestinationOptions() {
-    var resultElement = document.getElementById('transferDestination')
-    resultElement.innerHTML = ''
-
-    axios.get('http://localhost:3000/home', config)
-        .then(response => {
-            resultElement.innerHTML = generateAccountList(response)
-        })
-        .catch(error => {
-            console.log(error)
-            resultElement.innerHTML = generateErrorHTMLOutput(error)
-        })
-}
-
 function internalTransfer() {
     var source = parseInt(document.getElementById('transferSource').value)
     var destination = parseInt(document.getElementById('transferDestination').value)
@@ -208,7 +177,6 @@ function internalTransfer() {
                 } else {
                     alert(res.message)
                 }
-
             })
             .catch(error => {
                 console.error(error)
@@ -353,28 +321,10 @@ function editCustomName() {
         })
 }
 
-function getAccountPayOptions() {
-    var resultElement = document.getElementById('payOptions')
-    resultElement.innerHTML = ''
-
-    axios.get('http://localhost:3000/home', config)
-    .then(response => {
-        resultElement.innerHTML = generateAccountList(response)
-    })
-    .catch(error => {
-        console.log(error)
-        resultElement.innerHTML = generateErrorHTMLOutput(error)
-    })
-}
-
 function payBill() {
     var description = getRadioVal(document.getElementById('paymentDescription'), 'bill')
     var account = document.getElementById('payOptions').value
     var amount = document.getElementById('payAmount').value
-
-    console.log(description)
-    console.log(account)
-    console.log(amount)
 
     const data = {
         account_number: account,
@@ -402,94 +352,92 @@ function payBill() {
     } else {
         alert('Invalid amount.')
     }
-
-    return false
 }
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+// var currentTab = 0; // Current tab is set to be the first tab (0)
+// showTab(currentTab); // Display the current tab
 
-function showTab(n) {
-    // This function will display the specified tab of the form ...
-    var x = document.getElementsByClassName("tab");
-    x[n].style.display = "block";
-    // ... and fix the Previous/Next buttons:
-    if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-    } else {
-        document.getElementById("prevBtn").style.display = "inline";
-    }
-    if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
-    } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
-    }
-    // ... and run a function that displays the correct step indicator:
-    fixStepIndicator(n)
-}
+// function showTab(n) {
+//     // This function will display the specified tab of the form ...
+//     var x = document.getElementsByClassName("tab");
+//     x[n].style.display = "block";
+//     // ... and fix the Previous/Next buttons:
+//     if (n == 0) {
+//         document.getElementById("prevBtn").style.display = "none";
+//     } else {
+//         document.getElementById("prevBtn").style.display = "inline";
+//     }
+//     if (n == (x.length - 1)) {
+//         document.getElementById("nextBtn").innerHTML = "Submit";
+//     } else {
+//         document.getElementById("nextBtn").innerHTML = "Next";
+//     }
+//     // ... and run a function that displays the correct step indicator:
+//     fixStepIndicator(n)
+// }
 
-function nextPrev(n) {
-    // This function will figure out which tab to display
-    var x = document.getElementsByClassName("tab");
-    // Exit the function if any field in the current tab is invalid:
-    if (n == 1 && !validateForm()) return false;
-    // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
-    currentTab = currentTab + n;
-    // if you have reached the end of the form... :
-    if (currentTab >= x.length) {
-        //...the form gets submitted:
-        document.getElementById("paymentDescription").submit();
-        return false;
-    }
-    // Otherwise, display the correct tab:
-    showTab(currentTab);
-}
+// function nextPrev(n) {
+//     // This function will figure out which tab to display
+//     var x = document.getElementsByClassName("tab");
+//     // Exit the function if any field in the current tab is invalid:
+//     if (n == 1 && !validateForm()) return false;
+//     // Hide the current tab:
+//     x[currentTab].style.display = "none";
+//     // Increase or decrease the current tab by 1:
+//     currentTab = currentTab + n;
+//     // if you have reached the end of the form... :
+//     if (currentTab >= x.length) {
+//         //...the form gets submitted:
+//         document.getElementById("paymentDescription").submit();
+//         return false;
+//     }
+//     // Otherwise, display the correct tab:
+//     showTab(currentTab);
+// }
 
-function validateForm() {
-    // This function deals with validation of the form fields
-    var x, y, i, valid = true;
-    x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("input");
-    // A loop that checks every input field in the current tab:
-    for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false:
-            valid = false;
-        }
-    }
-    // If the valid status is true, mark the step as finished and valid:
-    if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-    }
-    return valid; // return the valid status
-}
+// function validateForm() {
+//     // This function deals with validation of the form fields
+//     var x, y, i, valid = true;
+//     x = document.getElementsByClassName("tab");
+//     y = x[currentTab].getElementsByTagName("input");
+//     // A loop that checks every input field in the current tab:
+//     for (i = 0; i < y.length; i++) {
+//         // If a field is empty...
+//         if (y[i].value == "") {
+//             // add an "invalid" class to the field:
+//             y[i].className += " invalid";
+//             // and set the current valid status to false:
+//             valid = false;
+//         }
+//     }
+//     // If the valid status is true, mark the step as finished and valid:
+//     if (valid) {
+//         document.getElementsByClassName("step")[currentTab].className += " finish";
+//     }
+//     return valid; // return the valid status
+// }
 
-function fixStepIndicator(n) {
-    // This function removes the "active" class of all steps...
-    var i, x = document.getElementsByClassName("step");
-    for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-    }
-    //... and adds the "active" class to the current step:
-    x[n].className += " active";
-}
+// function fixStepIndicator(n) {
+//     // This function removes the "active" class of all steps...
+//     var i, x = document.getElementsByClassName("step");
+//     for (i = 0; i < x.length; i++) {
+//         x[i].className = x[i].className.replace(" active", "");
+//     }
+//     //... and adds the "active" class to the current step:
+//     x[n].className += " active";
+// }
 
-function getRadioVal(form, name) {
-    var val;
-    // get list of radio buttons with specified name
-    var radios = form.elements[name];
+// function getRadioVal(form, name) {
+//     var val;
+//     // get list of radio buttons with specified name
+//     var radios = form.elements[name];
     
-    // loop through list of radio buttons
-    for (var i=0, len=radios.length; i<len; i++) {
-        if ( radios[i].checked ) { // radio checked?
-            val = radios[i].value; // if so, hold its value in val
-            break; // and break out of for loop
-        }
-    }   
-    return val; // return value of checked radio or undefined if none checked
-}
+//     // loop through list of radio buttons
+//     for (var i=0, len=radios.length; i<len; i++) {
+//         if ( radios[i].checked ) { // radio checked?
+//             val = radios[i].value; // if so, hold its value in val
+//             break; // and break out of for loop
+//         }
+//     }   
+//     return val; // return value of checked radio or undefined if none checked
+// }

@@ -14,7 +14,6 @@ function getAccounts() {
             resultElement.innerHTML = generateSuccessHTMLOutput(res);
         } else {
             alert(res.message)
-            resultElement.innerHTML = generateErrorHTMLOutput(error);
         }
     })
     .catch(error => {
@@ -24,7 +23,7 @@ function getAccounts() {
 }
 
 function generateSuccessHTMLOutput(res){
-    var account_type = response.account_type
+    var account_type = res.account_type
     var result = ''
     var format = ''
     

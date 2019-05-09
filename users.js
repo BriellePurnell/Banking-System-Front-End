@@ -57,7 +57,7 @@ function registerUser() {
             
             if (res.status === 'ok') {
                 alert('User is now registered.')
-                window.location.replace('login.html')
+                location.reload()
             } else {
                 alert(res.message)
             }
