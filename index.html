@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Online Banking</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,21 +31,29 @@
             </li>
         </div>
     </nav>
-
+    <div class = container>
+   
     <div class="container" id="userInfo">
-        <label for="userID"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="userID" id="userID" required>
+        <div class = "card text-center">
+        
+        <div class = "card-body">
+            <label for="userID"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="userID" id="userID" required>
         <br>
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" id="psw"required>
-    
-        <button type="submit" onclick="loginUser()">Log in</button>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" id="psw"required>
+        <div>
+            <button type="submit" onclick="loginUser()">Log in</button>
+        </div>
+        </div>
         <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" checked="checked" name="remember"> Remember me</input>
         </label>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal" style="margin-left: 1rem">Don't have an online user account?</button>
-    </div>
 
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#editAccountModal" >REGISTER</button>
+    </div>
+    </div>
+    </div>
     <!--Edit Accounts Modal-->
 
     <div class="modal fade" id="editAccountModal" role="dialog" tabindex="-1"aria-labelledby="editAccountModalLabel" aria-hidden="true">
@@ -68,12 +77,16 @@
                     <br>
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" id="password" maxlength="50" required>
+                   <div>
                     <input type="submit" value="Submit"></input>
                 </div>
+                </div> 
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
+            
         </div>
     </div>
     </div>
