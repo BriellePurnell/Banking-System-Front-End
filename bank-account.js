@@ -192,9 +192,15 @@ function internalTransfer() {
                 alert('Something went wrong.')
                 window.location.replace('home.html')
             })
-    } else {
-        console.log('not ok')
-        alert('Invalid input')
+    } 
+    else if (isNaN(source)) {
+        alert('Please specify the account you are transfering funds from.')
+    }
+    else if (isNaN(destination)) {
+        alert('Please specify the account you are transfering funds to.')        
+    }
+    else if (source == destination) {
+        alert('You cannot transfer funds from and to the same account.')
     }
 }
 
