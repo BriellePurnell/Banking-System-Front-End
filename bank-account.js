@@ -134,7 +134,7 @@ function deposit() {
     var amount = parseFloat(document.getElementById('depositAmount').value)
     var account = parseInt(document.getElementById('depositOptions').value)
 
-    if (!isNaN(account) && !isNaN(amount)) {
+    if (!isNaN(account) && !isNaN(amount) && amount >= 25) {
         const data = {
             account_number: account,
             amount: amount,
@@ -155,8 +155,12 @@ function deposit() {
             .catch(error => {
                 console.log(error)
             })
-    } else {
-        alert('Invalid account or deposit amount.')
+    } 
+    else if (isNaN(account)) { 
+        alert('Please specify account.')
+    }
+    else if (amount < 25) {
+        alert('Amount needs to be a number greater than 25.')
     }
 }
 
